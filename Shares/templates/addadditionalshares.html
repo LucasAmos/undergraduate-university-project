@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% from "form_macros.html" import render_field %}
+
+{% block title %}
+FYP -- Add additional shares{{ Title }}
+{% endblock %}
+
+{% block content %}
+<section>
+    <h1>{{ title }}</h1>
+    <h1>Add shares and dividends </h1>
+    <br>
+
+    <div class="col-md-10 col-xs-12 border2">
+
+        <form action="" method="post">
+
+            <h3 class="red"> <strong>{{name}}</strong></h3>
+            {{form.hidden_tag()}}
+            <br>
+            <table>
+                {{ render_field(form.sharequantity, size=20) }}
+                {{ render_field(form.shareprice, size=20) }}
+                {{ render_field(form.dividends, size=20) }}
+
+                <tr class="submit">
+                    <td></td>
+                    <td><button type="submit" class="submit2">Submit</button>
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+    </div>
+
+</section>
+{% endblock %}
+
+{% block sidebar %}
+
+{% endblock %}

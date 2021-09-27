@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}
+Share notifications
+{% endblock %}
+{% from "form_macros.html" import render_field %}
+
+{% block content %}
+
+<h1>Edit notifications for <bdi class="red">{{tempshare.name.name}}</bdi></h1>
+
+<br>
+
+<form action="" method="post">
+    {{form.hidden_tag()}}
+
+
+
+    <table>
+
+        <div class="col-md-6 col-xs-6 border">
+            {{form.triggerlevel.label}}
+            {{form.positivenegative(class_="buttons")}}
+
+            <bdi style="font-size:18px">£</bdi>{{ form.triggerlevel(class_="buttons width20", min="0.01", step="0.01" )}}
+            <br><br>
+
+            <ul class="error buttons">
+                {% for error in form.positivenegative.errors %}
+                <li> <div class="red error"> {{  error }} for the triggger level </div></li>
+
+                {% endfor %}
+
+                {% for error in form.triggerlevel.errors %}
+                <li> <div class="red error"> {{  error }} </div></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-xs-6 border">
+                {{form.emailenabled.label}}
+                {{ form.emailenabled(class_="buttons") }}
+
+            </div>
+            <div class="col-md-6 col-xs-6 border">
+                {{form.smsenabled.label}}
+                {{ form.smsenabled(class_="buttons") }}
+
+            </div>
+
+
+        </div>
+        <br>
+
+        <div class="row">
+
+            <tr class="submit">
+                <td></td>
+                <td><button class="submit2" type="submit">Submit</button>
+                </td>
+            </tr>
+        </div>
+    </table>
+
+</form>
+
+
+
+
+
+
+{% endblock %}

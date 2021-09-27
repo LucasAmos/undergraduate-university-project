@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block title %}
+FYP - share portfolio
+{% endblock %}
+
+{% block carousel %}
+
+{% if current_user.is_authenticated == False %}
+<!-- Header Carousel -->
+<header id="myCarousel" class="carousel slide">
+
+
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="fill" style="background-image:url('static/img/chart.jpg');"></div>
+            <div class="carousel-caption">
+
+                <section><h1> <strong>FINAL YEAR PROJECT</strong></h1> </section>
+                <br>
+                <br>
+
+                <h3>Share portfolio manager </h3>
+                <br>
+                <br>
+
+                <a href="{{ url_for('login') }}" class="btn btn-lg btn-primary  tweaked-margin" id="notvisited"> Log in</a>
+
+                <a href="{{ url_for('signup') }}" class="btn btn-lg btn-primary" id="notvisited">Signup</a>
+
+            </div>
+
+        </div>
+    </div>
+
+</header>
+{% endif %}
+{% endblock %}
+
+
+
+
+
+{% block news %}
+{% if news %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+<script>!function() {
+    $('#news2').load('/newsdata')
+}();
+</script>
+
+{% endif %}
+{% endblock %}
+
+
+
+
+
+{% block fall %}
+
+{% if sharesexist %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+<script>!function() {
+    $('#fall').load('/risefall')
+}();
+</script>
+{% endif %}
+{% endblock %}
+
+
+
+
+{% block addshare %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+<script>!function() {
+    $('#addshare').load('/sidebarshare')
+}();
+</script>
+
+{% endblock %}
+
+
+
+{% block content %}
+<div class="row">
+
+    <article>
+
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+
+
+
+
+        {% if current_user.is_authenticated %}
+
+        <div id="result">
+
+            <div id="result2">
+
+                <br>
+                <img id="gear" src="static/img/gears.gif">
+                Just fetching your portfolios...
+                <br><br>
+            </div>
+        </div>
+
+
+
+        <script>$( document ).ready(function() {
+            $('#result2').load('/sharedatanolivedata')
+        });
+        </script>
+
+
+        <script>$( document ).ready(function() {
+            $('#result').load('/sharedata')
+        });
+        </script>
+
+        {% endif %}
+
+
+    </article>
+</div>
+
+
+
+
+
+</row>
+
+
+
+
+{% endblock %}
+
+

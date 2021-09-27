@@ -1,0 +1,104 @@
+<html>
+
+<body style="background-color: #e6f2ff">
+
+
+
+
+{% if data %}
+{% for id in portfoliovalues %}
+
+<h2 style="margin-bottom: 0px; text-decoration: none; "> <a href="lucasamos.pythonanywhere.com/portfolio/{{id}}"> {{ id | capitalize }} </a> </h2>
+
+
+<table style="border: 1px dashed lightgray; background-color: #e6e6e6">
+
+    <th> Portfolio value  </th>
+    <th> Total share value  </th>
+    <th> Dividend value  </th>
+    <th> Profit/loss</th>
+
+    <tr>
+        <td> £{{portfoliovalues[id]['portfoliovalue'] }}  </td>
+        <td> £{{portfoliovalues[id]['sharevalue'] }}  </td>
+        <td> £{{portfoliovalues[id]['dividends'] }} </td>
+
+
+        {% if  portfolioprofits[id] | float == 0 %}
+
+        <td> £{{portfolioprofits[id]}} </td>
+
+
+        {% elif  portfolioprofits[id] | float < 0 %}
+
+        <td style="color: red"> £{{portfolioprofits[id]}} </td>
+
+        {% else %}
+        <td style="color: green">  £{{portfolioprofits[id]}}  </td>
+
+        {% endif %}
+
+    </tr>
+
+</table>
+
+<div style="background-color: #e6e6e6
+;">
+<table class="share">
+    <tr>
+        <th>Name</th>
+        <th>Share value</th>
+        <th>Quantity</th>
+        <th>Dividends</th>
+        <th>Total share value</th>
+        <th>Profit/loss</th>
+    </tr>
+    {% set count = 0 %}
+    {% for share in data if not count > 2 %}
+
+
+
+    {% if share.portfolioid == id %}
+
+    {% set price = share['price'] | float * share['quantity'] %}
+
+    <tr>
+        <td> {{share['name']}} </td>
+        <td> £{{share['price']}} </td>
+        <td> {{share['quantity']}} </td>
+        <td> £{{share['dividends']}} </td>
+        <td>£{{price}}</td>
+
+        {% if share['quantity'] == 0 %}
+
+        <td> N/A </td>
+
+        {% elif  share['profit'] | float < 0 %}
+
+            <td class="loss"> £{{share['profit']}}</td>
+
+
+
+            {% else %}
+
+            <td class="profit"> £{{share['profit']}} </td>
+
+            {% endif %}
+
+    </tr>
+    {% set count = count + 1 %}
+
+
+    {% endif %}
+
+    {% endfor %}
+</table>
+<a href="lucasamos.pythonanywhere.com/portfolio/{{id}}"> View all shares in portfolio </a>
+</div>
+{% endfor %}
+
+
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}
+News
+{% endblock %}
+
+{% block content %}
+
+<h1>Your share performance <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> </h2> </h1>
+<br>
+
+
+
+
+{% for share in data %}
+
+{% if share[1] %}
+
+{% if  share[2] | float < 0 %}
+
+<div class="loss">
+    <h3 class="headermargin">
+        {{share[1]}} {{share[2]}}
+
+        {% set temp = share[0] %}
+
+        <!--<img src="http://chart.finance.yahoo.com/z?s={{temp}}&t=1m">-->
+    </h3>
+</div>
+
+{% else %}
+
+<div class="profit">
+    <h3 class="headermargin">
+        {{share[1]}} {{share[2]}}  </h3>
+            <!--<img src="http://chart.finance.yahoo.com/z?s={{temp}}&t=1m">-->
+
+</div>
+
+{% endif %}
+
+
+{% endif %}
+
+{% endfor %}
+
+
+</div>
+
+
+
+{% endblock %}
+
+

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% from "form_macros.html" import render_field %}
+
+{% block title %}
+FYP -- Login
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h1 style="clear:both">Please login </h1>
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <table>
+                {{  render_field(form.username, size=30) }}
+                {{  render_field(form.password, size=30) }}
+                {{  render_field(form.remember_me) }}
+                {{  render_field(form.submit, class="submit2") }}
+                <!--{{ form.recaptcha }}-->
+
+            </table>
+        </form>
+    </section>
+{% endblock %}
+
+{%  block sidebar %}
+{%  endblock %}

@@ -1,0 +1,249 @@
+.nospacing{
+    margin:4px;
+    padding:0;
+}
+
+.bottompadding{
+    margin-bottom: 10px;
+}
+
+#sidebaradd {
+    margin-top: 25px;
+    background-color: #EFF5FB;
+    padding: 5px 5px 5px 5px;
+
+    border-radius: 5px;
+
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.edit{
+    border-radius: 5px;
+    background-color: #939393;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+
+.border{
+
+    border-radius: 25px;
+    border: 1px solid lightgrey;
+    padding-left: 15px;
+    padding-top: 15px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+
+}
+
+.border2{
+
+    border-radius: 25px;
+    border: 1px solid lightgrey;
+    padding-left: 15px;
+    padding-top: 0px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+
+}
+
+.headermargin{
+    margin:0;
+    padding:3px;
+}
+
+
+.errorborder { border: 2px solid #ff0000;
+}
+
+
+#fall2{
+
+    background-color:  #EFF5FB;
+    padding: 10px;
+    padding-top: 5px;
+    border-radius: 5px;
+
+}
+
+#fall{
+
+    padding-bottom: 25px;
+    border-radius: 5px;
+}
+
+#notvisited{
+
+    text-decoration: none;
+    color: white;
+
+}
+
+
+#news3{
+    background-color:  #EFF5FB;
+    padding: 10px;
+    padding-top: 5px;
+    border-radius: 5px;
+}
+
+#news2{
+
+    margin-top: 25px;
+    padding-bottom: 25px;
+    border-radius: 5px;
+;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+#result{
+
+    margin-bottom: 00px;
+
+}
+
+
+.submit2{
+    border-radius: 5px;
+    background-color: #4CAF50;
+    width: 200px;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.submit2:hover{
+
+    background-color: #449D48;
+}
+
+.submit3{
+    border-radius: 5px;
+    background-color: #FF0000;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit3:hover{
+
+    background-color: #e50000;
+}
+
+.submit4{
+    border-radius: 5px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.width20 {
+    width: 70px;
+}
+
+.buttons { display: inline;
+}
+
+ul
+{
+    list-style-type: none;
+}
+
+.error{
+    list-style-type: none;
+}
+
+.red{
+    color: red
+}
+
+.glyph {
+    color: black;
+    font-size: 17px;
+}
+
+.loss {
+    color: red;
+}
+
+
+.profit{
+    color: green;
+}
+
+
+
+/*custom styles*/
+
+.tweaked-margin {
+    margin-right: 10px;
+}
+
+
+#flashes {
+    background: #c9ddee ;
+}
+
+.portfolio {
+    color: red
+}
+
+.portfolio a {
+    color: red
+}
+
+.fulltable{
+    width: 100%;
+}
+
+.share tr:nth-child(odd)		{ background-color:#eee; }
+.share tr:nth-child(even)		{ background-color:#fff; }
+
+.share td {
+    padding: 5px;
+}
+
+
+.share th {
+    padding: 5px;
+    padding-right: 15px;
+}
+
+.portfolioshares{
+    border: 1px dashed lightgrey;
+}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% from "form_macros.html" import render_field %}
+
+{% block title %}
+Add share
+{% endblock %}
+
+{% block content %}
+
+<section>
+    <h1>Add a new share to your portfolio</h1>
+
+    <br>
+
+    <div class="row">
+        <div class="col-md-10 col-xs-12 border">
+
+            <form action="" method="post">
+                {{form.hidden_tag()}}
+                <table>
+                    {{ render_field(form.ticker, class="chosenshare dropdown",size=20) }}
+                    {{ render_field(form.quantity, size=22) }}
+                    {{ render_field(form.dividends, size=22) }}
+                    {{ render_field(form.purchaseprice, size=22)}}
+                    {{ render_field(form.portfolioid, class="chosen dropdown", size=22) }}
+
+
+
+                    <tr class="submit">
+                        <td></td>
+                        <td><button type="submit" class=" submit2">Submit</button>
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+
+        </div>
+
+</section>
+
+
+{% endblock %}
+
+{% block sidebar %}
+
+{% endblock %}
+

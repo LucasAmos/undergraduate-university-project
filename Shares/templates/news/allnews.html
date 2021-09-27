@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+News
+{% endblock %}
+
+{% block content %}
+
+<h1>News for the shares you own </h1>
+<br>
+
+{% for key, value in news.iteritems() %}
+
+<a href='{{value}}' target="_blank"> {{key}}</a> <br>
+
+{% endfor %}
+
+{% endblock %}
+
+
+
+{{ news | length}}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% from "form_macros.html" import render_field %}
+
+{% block title %}
+Notification settings
+{% endblock %}
+
+
+{% block content %}
+
+<section>
+    <h1> Notification settings</h1>
+    <br>
+
+
+    <form action="" method="post">
+        {{form.hidden_tag()}}
+
+
+
+        <table>
+
+            <div class="row">
+                <div class="col-md-10 col-xs-12 border">
+                    {{form.emailfrequency.label}}
+                    <br>
+
+                    {{ form.emailfrequency(class_="buttons") }}
+
+                </div>
+                <div class="col-md-10 col-xs-12 border">
+
+                    {{form.smsenabled.label}}
+                    <br>
+
+                    {{form.smsenabled(class_="buttons") }}
+                </div>
+            </div>
+
+
+
+            <div class="row">
+
+                <tr class="submit">
+                    <td></td>
+                    <td><button type="submit" class="submit2">Submit</button>
+                    </td>
+                </tr>
+            </div>
+        </table>
+
+    </form>
+
+</section>
+
+
+
+{% endblock %}

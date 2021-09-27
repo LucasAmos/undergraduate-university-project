@@ -1,0 +1,20 @@
+<div id="news3">
+
+<h2> Latest news stories
+<span class="glyphicon glyphicon-flag" aria-hidden="true"></span> </h2>
+
+
+{% set count = 0 %}
+
+{% for key, value in news.iteritems()  if not count > 4 %}
+<p>
+<a href='{{value}}' target="_blank"> {{key}}</a> <br>
+</p>
+{% set count = count + 1 %}
+{% endfor %}
+<br>
+
+
+<a class="btn btn-lg btn-default btn-block" href="{{ url_for('allnews') }}">All news</a>
+
+</div>

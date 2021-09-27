@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+FYP - Delete bookmark
+
+{% endblock %}
+
+{% block content %}
+
+<section>
+    <h1 style="clear:both"> Confirm delete</h1>
+
+    <form action="" method="post">
+        <span style="color:red"> <h3> Are you sure you want to delete the share <b> {{ share['name']['name'] }}</b> ? </h3></span>
+        <br>
+
+        <div class="row">
+            <div class="col-md-4 col-xs-6">
+        <a href="{{ url_for('list_portfolio', portfolio_id=portfolio_id)}}">
+        <button type="button" class="submit3"> No take me out of here!</button>
+        </a>
+                </div>
+
+
+            <div class="col-md-4 col-xs-6">
+        <button type="submit" class=" submit2"> Yes, delete it!</button>
+                </div>
+        </div>
+
+
+    </form>
+
+</section>
+
+{% endblock %}

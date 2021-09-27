@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}
+FYP -- Transactions
+{% endblock %}
+
+{% block content %}
+
+<h1> Your transactions</h1>
+<br>
+
+<table class="share fulltable">
+    <tr>
+        <th>Share</th>
+        <th>Portfolio</th>
+        <th>Date</th>
+        <th>Transaction</th>
+        <th>Quantity</th>
+        <th>Dividends</th>
+        <th>Price</th>
+
+    </tr>
+
+
+
+    {% for row in transactiondata %}
+
+    <tr>
+        <td> {{ row['name'] }} </td>
+        <td> {{ row['portfolioid'] }} </td>
+        <td> {{ row['date'] }} </td>
+
+        {% if row['buysell'] == 0 %}
+        <td> Initial buy </td>
+        {% endif %}
+
+        {% if row['buysell'] == 1 %}
+        <td> Shares added </td>
+        {% endif %}
+
+        {% if row['buysell'] == 2 %}
+        <td> Shares sold </td>
+        {% endif %}
+
+        {% if row['buysell'] == 3 %}
+        <td> Shares deleted </td>
+        {% endif %}
+
+
+
+
+
+
+        <td> {{ row['quantity'] }} </td>
+        <td> {{ row['dividends'] }} </td>
+        <td> £{{ row['price'] /100 }} </td>
+
+        {% endfor %}
+</table>
+
+
+{% endblock %}

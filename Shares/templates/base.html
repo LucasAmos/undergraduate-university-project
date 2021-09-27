@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}{% endblock %}</title>
+
+
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../static/css/modern-business.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chosen.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+
+
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+
+
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top navbar-default " role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            {% if current_user.is_authenticated %}
+
+            <a class="navbar-brand" href="{{url_for('index') }}">{{ current_user.username | capitalize}}</a>
+
+            {% else %}
+
+            <a class="navbar-brand" href="{{url_for('index') }}">FYP</a>
+
+
+
+            {% endif %}
+
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+
+                {% if current_user.is_authenticated %}
+
+                {% if portfolioids %}
+
+                <li><a href="{{ url_for('add') }}">Add share</a></li>
+
+
+                {% else %}
+
+                <li>   <a href=" {{ url_for('addportfolio') }}"> Add portfolio</a> </li>
+
+                {% endif %}
+
+
+
+
+                {% else %}
+                <li><a href=" {{ url_for('signup') }}"> Sign up </a> </li>
+                <li><a href=" {{ url_for('login') }}"> Log in </a> </li>
+                {% endif %}
+
+
+                {% if current_user.is_authenticated %}
+
+                {% if portfolioids %}
+
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolios <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+
+                        {%  for portfolio in portfolioids %}
+
+                        <li>
+                            <a href="{{ url_for('list_portfolio', portfolio_id =portfolio) }}"> {{ portfolio | capitalize}} </a>
+
+                        </li>
+
+                        {%  endfor %}
+                    </ul>
+                </li>
+
+                <li>
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Edit portfolios <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+
+                        <li> <a href=" {{ url_for('addportfolio') }}"> Add portfolio</a> </li>
+                        <li> <a href=" {{ url_for('deleteportfolio') }} "> Delete portfolio</a> </li>
+                    </ul>
+                </li>
+
+
+
+                {% endif %}
+                {% set usery = current_user.username %}
+
+
+                <li><a href=" {{ url_for('settings') }}"> Edit settings </a> </li>
+                <li><a href="{{ url_for('transactions', user = usery)  }}">Transactions</a></li>
+
+                <li><a href=" {{ url_for('logout') }}"> Sign out </a> </li>
+
+
+                {% endif %}
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+{% block carousel %} {% endblock %}
+
+
+<div class="mainbg">
+
+
+
+
+
+    <div class="row">
+
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+        <div class="col-lg-12">
+
+            <ol class="breadcrumb"  id="flashes">
+
+
+                <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+
+            </ol>
+            <br>
+        </div>
+        {% endif %}
+        {% endwith %}
+
+
+        <!-- Page Content -->
+        <div class="container">
+
+            <div class="row">
+
+                {% block error %}
+                {% endblock %}
+
+                <div class="col-md-8">
+
+                    {% block content %}
+                    {% endblock %}
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="col-md-12" id="addshare"> </div>
+
+
+                    <div class="col-md-12" id="news2">
+
+
+                    </div>
+
+                    <div class="col-md-12" id="fall">
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <br>
+        </div>
+
+        {% block addshare %}
+
+        {% endblock %}
+
+
+
+        {% block news %}
+
+        {% endblock %}
+
+
+
+        {% block fall %}
+
+        {% endblock %}
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script src="../static/js/jquery.js"></script>
+<script type="text/javascript" src="../static/js/chosen.jquery.js" ></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../static/js/bootstrap.min.js"></script>
+
+<!-- Script to Activate the Carousel -->
+<script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+</script>
+<script>
+
+
+    $(document).ready(function(){
+
+        $('.chosen').chosen({
+            allow_single_deselect: true,
+            width: 'resolve',
+            placeholder_text_single: "Choose a portfolio"
+        });
+
+        $('.chosendelete').chosen({
+            allow_single_deselect: true,
+            width: 'resolve',
+            placeholder_text_single: "Choose a portfolio to delete"
+        });
+
+        $('.chosenshare').chosen({
+            allow_single_deselect: true,
+            width: 'resolve',
+            placeholder_text_single: "Start typing to find a share"
+        });
+
+        $(function() {
+            $('#flashes').delay(1).fadeIn('normal', function() {
+                $(this).delay(5000).fadeOut();
+            });
+        });
+
+    });
+
+</script>
+
+
+<script>
+
+
+    </body>
+
+    </html>

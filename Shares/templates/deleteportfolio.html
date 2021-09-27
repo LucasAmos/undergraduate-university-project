@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% from "form_macros.html" import render_field %}
+
+{% block title %}
+Delete portfolio
+{% endblock %}
+
+{% block content %}
+
+
+<section>
+    <h1>Delete a portfolio</h1>
+    <br>
+
+    <div class="col-md-10 col-xs-12 border">
+
+        <form action=" {{url_for('deleteportfolio')}}" method="post" name ="deleteform">
+            {{d_form.hidden_tag()}}
+            <table>
+                {{ render_field(d_form.name, size=5, class="chosendelete dropdown") }}
+
+
+
+
+
+                <tr class="submit">
+                    <td></td>
+                    <td><button type="submit" class="submit2">Submit</button>
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+{% endblock %}
+

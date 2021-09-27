@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% from "form_macros.html" import render_field %}
+
+{% block title %}
+Sell share{{ Title }}
+{% endblock %}
+
+{% block content %}
+<section>
+    <h1>Sell shares</h1>
+    <form action="" method="post">
+        {{form.hidden_tag()}}
+
+        <br>
+            <div class="col-md-10 col-xs-12 border2">
+        <h3 class="red"> <strong>{{name}}</strong></h3>
+
+        <table>
+
+            {{ render_field(form.quantity, size=20) }}
+            {{ render_field(form.price, size=20) }}
+            <!--{{ render_field(form.originalportfolioid, size=20) }}-->
+            </div>
+            <tr class="submit">
+                <td></td>
+                <td><button type="submit" class="submit2">Submit</button>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+
+</section>
+{% endblock %}
+
+{% block sidebar %}
+
+{% endblock %}

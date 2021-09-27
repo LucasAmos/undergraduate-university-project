@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% from "form_macros.html" import render_field %}
+
+{% block title %}
+FYP -- Settings
+{% endblock %}
+
+{% block content %}
+
+<h1>Update account settings</h1>
+<br>
+
+
+
+<div class="row">
+    <div class="col-md-10 col-xs-12 border">
+        <section>
+            <form action="" method="post">
+                {{ form.hidden_tag() }}
+                <table>
+
+                    {{ render_field(form.email, size=25, placeholder=user.email) }}
+                    {{ render_field(form.phonenumber, size=25, placeholder=user.phonenumber) }}
+                    {{ render_field(form.password, size=25) }}
+                    {{ render_field(form.password2, size=25) }}
+
+                    <tr class="submit">
+                        <td></td>
+                        <td><button type="submit" class="submit2">Submit</button>
+                        </td>                        <td></td>
+
+                    </tr>
+                </table>
+            </form>
+        </section>
+    </div>
+
+
+
+    </table>
+
+
+
+
+
+    {% endblock %}
+

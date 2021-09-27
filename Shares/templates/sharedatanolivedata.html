@@ -1,0 +1,111 @@
+{% if current_user.is_authenticated %}
+        <header>
+            <h1>Welcome {{ current_user.username | capitalize }}  <img id="gear" src="static/img/longloader.gif"></h1>
+
+        </header>
+{% endif%}
+
+{% if not ids and not data %}
+
+
+<br>
+<h3>You don't have any portfolios. Why not create one and add some shares to it?</h3>
+
+<a href="{{ url_for('addportfolio') }}" class="btn btn-lg btn-primary  tweaked-margin"> Add portfolio</a>
+
+
+{% endif %}
+
+
+{% if not data and ids %}
+<br>
+<h3> You don't have any shares, why not add some to your portfolio?</h3>
+<a href="{{ url_for('add') }}" class="btn btn-lg btn-primary  tweaked-margin"> Add share</a>
+
+{% endif %}
+
+
+
+{% if data %}
+
+
+
+
+{% for id in ids %}
+
+<h2>    <a href="{{ url_for('list_portfolio', portfolio_id =id) }}"> {{ id | capitalize }} </a> </h2>
+
+
+
+
+<table class="share portfolioshares">
+    <caption>Portfolio details</caption>
+    <th> Portfolio value  </th>
+    <th> Total share value  </th>
+    <th> Dividend value  </th>
+    <th> Profit/loss</th>
+
+    <tr>
+        <td> -- </td>
+        <td> -- </td>
+        <td> --</td>
+        <td> -- </td>
+
+    </tr>
+
+</table>
+
+
+<table class="share">
+    <caption>Share details</caption>
+    <tr>
+        <th>Name</th>
+        <th>Share value</th>
+        <th>Quantity</th>
+        <th>Dividends</th>
+        <th>Total share value</th>
+        <th>Profit/loss</th>
+    </tr>
+
+
+
+    {% set count = 0 %}
+    {% for share in data if not count > 2 %}
+
+
+
+    {% if share.portfolioid == id %}
+
+
+    <tr>
+        <td> {{share['name']}} </td>
+        <td> -- </td>
+        <td> {{share['quantity']}} </td>
+        <td> £{{share['dividends']}} </td>
+        <td>--</td>
+
+
+
+        <td> -- </td>
+
+
+
+    </tr>
+    {% set count = count + 1 %}
+
+
+    {% endif %}
+
+    {% endfor %}
+</table>
+
+
+<a href="{{ url_for('list_portfolio', portfolio_id =id) }}"> View all shares in portfolio </a>
+<br><br>
+{% endfor %}
+
+
+
+
+{% endif %}
+

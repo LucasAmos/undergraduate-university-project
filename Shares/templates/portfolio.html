@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}
+Portfolio - {{ id | capitalize }}
+{% endblock %}
+
+{%  block content %}
+
+{% if portfoliovalue %}
+
+
+<div class="container">
+
+
+    <h1>{{ id | capitalize  }}</h1>
+
+    <table class="share">
+        <tr>
+            <th>Portfolio value: £{{portfoliovalue['portfoliovalue']}}</th>
+            <th>Total share value: £{{portfoliovalue['sharevalue']}}</th>
+            <th>Dividends: £{{portfoliovalue['dividends']}}</th>
+
+            {% if  portfolioprofit | float < 0 %}
+
+            <th>  Profit/loss:<span class="loss"> £{{portfolioprofit |round(3, 'floor') }} </span> </th>
+
+            {% else %}
+
+            <th>Profit/loss: <span class="profit">  £{{portfolioprofit | round(3, 'floor') }} </span></th>
+
+            {% endif %}
+
+
+        </tr>
+    </table>
+
+    <br>
+
+    <table class="share">
+        <tr>
+            <th>Name</th>
+            <th>Ticker</th>
+            <th>Share value</th>
+            <th>Quantity</th>
+            <th>Dividends</th>
+            <th>Total share value</th>
+            <th>Profit/loss</th>
+            <th> Edit </th>
+
+        </tr>
+
+        {% for share in portfolioshares  %}
+
+        {% set totalprice = share['price'] | float * share['quantity'] %}
+
+        <tr>
+            <td> {{share['name']}} </td>
+            <td> {{share['symbol']}} </td>
+            <td> £{{share['price']}} </td>
+            <td> {{share['quantity']}} </td>
+            <td> {{share['dividends']}} </td>
+            <td> £{{totalprice}}</td>
+
+            {% if share['quantity'] == 0 %}
+
+            <td> N/A </td>
+
+            {% elif  share['profit'] | float < 0 %}
+
+            <td class="loss"> £{{share['profit']}}</td>
+
+            {% else %}
+
+            <td class="profit"> £{{share['profit']}} </td>
+
+            {% endif %}
+
+
+
+            <td>
+                <a href="{{url_for('addadditionalshares', share_id=share.id)}}"data-toggle="tooltip" title="Add shares"> <span class="glyphicon glyphicon-plus-sign glyph" aria-hidden="true"></span> </a>
+                <a href="{{ url_for('sell_share', share_id=share.id) }}"data-toggle="tooltip" title="Sell shares"><span class="glyphicon glyphicon-minus-sign glyph" aria-hidden="true"></span> </a>
+                <a href="{{url_for('delete_share', share_id=share.id) }}" data-toggle="tooltip" title="Delete this share">  <span class="glyphicon glyphicon-remove-sign glyph" aria-hidden="true"></span> </a>
+                <a href="{{url_for('setNotification', share_id=share.id) }}"  data-toggle="tooltip" title="Set notifications">  <span class="glyphicon glyphicon-bell glyph" aria-hidden="true"></span> </a>
+            </td>
+
+        </tr>
+
+        {% endfor%}
+    </table>
+
+</div>
+
+{% endif %}
+
+</div>
+
+
+{% endblock %}
+
+
+

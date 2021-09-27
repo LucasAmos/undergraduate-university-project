@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% from "form_macros.html" import render_field %}
+
+{% block title %}
+FYP -- Settings
+{% endblock %}
+
+{% block content %}
+
+<h1>Account settings</h1>
+<br>
+
+
+<table>
+
+    <div class="row">
+        <div class="col-md-10 col-xs-12 border">
+            <b>User settings</b><br>
+            {{user.username | capitalize}}<br>
+            {{user.email}}<br>
+            {{user.phonenumber}}<br>
+
+            <a href="{{ url_for('accountsettings') }}"><div class="edit"> edit </div> </a>
+        </div>
+
+
+        <div class="col-md-10 col-xs-12 border">
+            <b> Notification settings </b><br>
+
+            {% if user.emailfrequency == 0 %}
+
+            Portfolio emails disabled
+
+            {% elif user.emailfrequency == 1 %}
+
+            Daily portfolio emails
+
+            {% elif user.emailfrequency == 2 %}
+
+            Weekly portfolio emails
+
+
+
+            {% endif %}
+
+
+            <br>
+
+            {% if user.smsenabled == 0 %}
+
+            Share rise/fall notifications disabled
+
+            {% elif user.smsenabled == 1 %}
+
+            Share rise/fall notifications enabled
+
+            {% endif %}
+            <br>
+
+            <a href="{{ url_for('notifications') }}"><div class="edit"> edit </div> </a>
+
+        </div>
+
+
+</table>
+
+
+
+{% endblock %}

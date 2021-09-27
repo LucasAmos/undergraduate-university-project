@@ -1,0 +1,133 @@
+{% if current_user.is_authenticated %}
+<header>
+    <h1>Welcome {{ current_user.username | capitalize }} </h1>
+
+</header>
+{% endif%}
+
+
+{% if not ids and not data %}
+
+
+<br>
+<h3>You don't have any portfolios. Why not create one and add some shares to it?</h3>
+
+<a href="{{ url_for('addportfolio') }}" class="btn btn-lg btn-primary  tweaked-margin" id="notvisited"> Add portfolio</a>
+
+
+{% endif %}
+
+
+{% if not data and ids %}
+<br>
+<h3> You don't have any shares, why not add some to your portfolio?</h3>
+<a href="{{ url_for('add') }}" class="btn btn-lg btn-primary  tweaked-margin" id="notvisited"> Add share</a>
+
+{% endif %}
+
+
+
+{% if data %}
+
+
+
+
+{% for id in portfoliovalues %}
+
+<h2>    <a href="{{ url_for('list_portfolio', portfolio_id=id) }}"> {{ id | capitalize }} </a> </h2>
+
+
+
+
+<table class="share portfolioshares">
+    <caption>Portfolio details</caption>
+    <th> Portfolio value  </th>
+    <th> Total share value  </th>
+    <th> Dividend value  </th>
+    <th> Profit/loss</th>
+
+    <tr>
+        <td> £{{portfoliovalues[id]['portfoliovalue'] }}  </td>
+        <td> £{{portfoliovalues[id]['sharevalue'] }}  </td>
+        <td> £{{portfoliovalues[id]['dividends'] }} </td>
+
+
+        {% if  portfolioprofits[id] | float == 0 %}
+
+        <td> £{{portfolioprofits[id]}} </td>
+
+
+        {% elif  portfolioprofits[id] | float < 0 %}
+
+        <td class="loss"> £{{portfolioprofits[id]}} </td>
+
+        {% else %}
+        <td class="profit">  £{{portfolioprofits[id]}}  </td>
+
+        {% endif %}
+
+    </tr>
+
+</table>
+
+
+<table class="share">
+    <caption>Share details</caption>
+    <tr>
+        <th>Name</th>
+        <th>Share value</th>
+        <th>Quantity</th>
+        <th>Dividends</th>
+        <th>Total share value</th>
+        <th>Profit/loss</th>
+    </tr>
+    {% set count = 0 %}
+    {% for share in data if not count > 2 %}
+
+
+
+    {% if share.portfolioid == id %}
+
+    {% set price = share['price'] | float * share['quantity'] %}
+
+    <tr>
+        <td> {{share['name']}} </td>
+        <td> £{{share['price']}} </td>
+        <td> {{share['quantity']}} </td>
+        <td> £{{share['dividends']}} </td>
+        <td>£{{price}}</td>
+
+        {% if share['quantity'] == 0 %}
+
+        <td> N/A </td>
+
+        {% elif  share['profit'] | float < 0 %}
+
+        <td class="loss"> £{{share['profit']}}</td>
+
+
+
+        {% else %}
+
+        <td class="profit"> £{{share['profit']}} </td>
+
+        {% endif %}
+
+    </tr>
+    {% set count = count + 1 %}
+
+
+    {% endif %}
+
+    {% endfor %}
+</table>
+<a href="{{ url_for('list_portfolio', portfolio_id =id) }}"> View all shares in portfolio </a>
+<br><br>
+
+{% endfor %}
+
+
+
+
+{% endif %}
+
